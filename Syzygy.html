@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="Builds.html">Builds</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Syzygy</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                Jan 2017
+            </p>
+            <p style="color: white; font-size:large">
+                Syzygy is a 2d space defender-like. I had wanted to develop a more sophisticated / broad game, and make more of an effort to tailor gameplay and graphics. The basic idea is that a ship is travelling through space and is being attacked by hostile forces,
+                and the ship can be defended using the recharging shield, or enemies defeated by shooting with the point and click turret on top. This was the first project that I worked with a friend on. He did a lot of the graphics, and a small portion of code to do
+                with the enemy behaviour.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/syzygymain.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Main Menu with nice star field in background</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/syzygyhangar.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Hangar menu in which the player can buy upgraded systems or weapons</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                Having started with a small amount of art, and then jumping straight into the gameplay, when it came to implementing menus and different game states, it proved very difficult to effectively switch modes. This proved the point that you should plan projects in
+                advance, and that you should start off with some infrastructure. I essentially restarted the project as a smoother object orientated menu system, and then copied over the code with minimal changes to quickly integrate gameplay. This ended up with a much more
+                robust game-state system and allowed for more flexibility for when I wanted to develop the game further (for example with the hangar, or the possibility of different modes). I originally had a fixed journey, that contained a set number of enemies that had to be
+                killed before the player was destroyed, as well as the endless mode, however it became apparent that this was not well balanced, and a whole set of different (and painstakingly balanced) journeys would be needed to make this system rewarding and
+                last a decent amount of time. I created an endless mode, that remains in the game up to now, that should gradually ramp up in difficulty. The difficulty is fairly arbitrary but has a cap where I would always lose a bit of health every now and again and would ultimately die, when
+                I was testing. As the game was never intended to be widely released, I did not stress too much on the balancing, as for me the joy was in developing the algorithms rather than playing the game.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/syzygygameplay1.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Gameplay of the endless mode</p>
+                </div>
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/syzygygameplay2.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Gameplay of the endless mode</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                This project did not have so many hard algorithms as the domino TD, with only a little trigonometry to work out whether a bullet had hit the main or recharging shield probably being the most complicated part. Development of a better UI
+                system and game-state system was helpful as it exposed some of the many ways in which such a system can prove disastrous.
+                I was very pleased with this project, as it had very nice graphics compared to previous projects of mine, it had gameplay that was fun for at least one playthrough, with working upgrades and weapons. I was also happy with the
+                enemy spawning algorithm, and enemy movement (coded by friend), that made the game feel a lot less static.
+            </p>
+
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

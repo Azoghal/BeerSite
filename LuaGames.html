@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="Builds.html">Builds</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Lua Games</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                Oct 2016
+            </p>
+            <p style="color: white; font-size:large">
+                Moving on from python, in search of a low level engine for 2d games, I found <a href="https://love2d.org/">Love2D</a>. Love2D was built for use with lua, so I had to learn lua, which proved pretty simple due to the likenesses with python.
+                To begin with, I made some simple (and pretty rubbish) space invaders/ top down shooter games.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/harold.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Simple space invaders style game (Love2d w/ lua)</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/topDownZom.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Simple top down shooter game (Love2d w/ lua)</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                Although the first game is impossible to win, this does mean that all players have to listen to my wonderful stock audio integration when they die. Love2d provides basic libraries to implement file I/O, including a seperate and quite extensive music library.
+                This meant that it was trivial to implement audio, but it was a useful experience as I had to look through the documentation and being adept at trawling through documentation has since proven invaluable.
+                The top down game did not really build upon the space invader-alike, however it did leave me feeling that I wasn't doing something right - I was using an array of identical objects, with identical behaviours, but with different starting conditions.
+                This rudimentary system poorly mimicked object orientation, which was pointed out by friend who was a more experienced programmer than I was. He introduced me to the concept of object orientation, and showed me the middleclass library for object orientation in lua.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/bad%20objects.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Example of rudimentary and non flexible/ inheritable object</p>
+                    <img src="showcase/badbehaviour.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Example of cruddy method implementation</p>
+                </div>
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/game3.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Third game was a single player pong-alike</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                I decided to make a Tower Defence game as an introduction to object orientation, as it allowed good use of the concepts of OOP (Like inheritance ; Level of specific turret : specific turret : basic turret). I did not utilise OOP to its full potential, for example I rewrote a lot of methods that could have been inherited from the base class.
+                I implemented a system for the enemies to navigate a hard coded map. This was not ideal, but was suitable as the game had only one map, and if I increased the number of maps, they would not be random, so my approach could be expanded.
+                Basically the algorithm required an input for the x and y locations of corners, and would work out a vector to get from a to b, then re-evaluate to find the vector for b to c, and so on. This had some issues as the position was often not exactly the same as the destination position. To solve this problem I changed the check from being equal, to being further than the destination.
+                This did not impact too hugely on the accuracy of the path following unless the game was running at a very low tick-rate, which did not tend to be a problem due to the simple graphics and few objects.
+                Unfortunately I lost all but the start of the code, but still have some assets that I ended up using for the next TD Game.
+            </p>
+
+
+
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

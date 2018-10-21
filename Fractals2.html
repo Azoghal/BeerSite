@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="Builds.html">Builds</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Fractals</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                2018
+            </p>
+            <p style="color: white; font-size:large">
+                 The next step was to make a generator that could save images and could handle colors well. I started a new Processing sketch, and created a class for a rainbow palette, and made a Fractal class that generated the mandelbrot set. The Mandelbrot set could be zoomed into similarly to the last generator,
+                 but the main improvement was that I could control the speed that the colours are changed (how fast we go through the palette), how many iterations to do, how far offset we want the colours to be. Below you can see the effect of various settings. (All taken of same exact area)
+            </p>
+            <div class="row">
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/fractalBlueSim.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Mandelbrot set zoomed in</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/fractalRedSim.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">With offset</p>
+                </div>
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/fractalSpeedSim.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">With greater speed</p>
+                </div>
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/fractalItSim.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">With fewer (not enough) iterations</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                 I then added the burning ship fractal. This is a modification of the mandelbrot set, part of what is sometimes known as the <a href="https://www.codeproject.com/Articles/1063025/The-Bad-Mandelbrot-Set" >"Bad Mandelbrots"</a>. It is generated by taking the Modulus of each term at each step, but follows the same general rule.
+                One of the reasons that this fractal is so interesting is that there are new shapes, and many of these are not solid but made up of fairly random colours due to the amount of iterations taken to escape.
+            <div class="row">
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BSWhole.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Whole Burning Ship Fractal</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BSShips.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">The "Ships" that give it its name</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BSRepeat.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Self Similarity</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BSColumn.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Different shapes to Mandelbrot</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                It is very common to find repeats of the main shape of the burning ship fractal. Often these look rotated/squished, which is a common feature of the "Bad Mandelbrots". There are also infinitely many of the ships that lie on the real axis,
+                however they get comparitively less wide and taller as you zoom in. This leads to barcode-like patterns.
+            </p>
+
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/Looks3d.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Looks rotated / 3d</p>
+                </div>
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/fractalBarcode.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Barcode-like pattern</p>
+                </div>
+
+            </div>
+
+            <p style="color: white; font-size: large">
+                I then proceeded to implement the Julia set for the mandelbrot set, and by extension the burning ship fractal. The Julia set of the Burning ship fractal is probably my favourite fractal as there are so many different appearences.
+            </p>
+
+
+            <div class="row">
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/julia1.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Julia set of mandelbrot</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/julia3.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Julia set of mandelbrot</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BJulia1.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Burning Ship Julia</p>
+                </div>
+
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/BJulia2.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Burning Ship Julia</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

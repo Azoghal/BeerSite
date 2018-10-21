@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="Builds.html">Builds</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Domino TD</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                Dec 2016
+            </p>
+            <p style="color: white; font-size:large">
+                To get the hang of object orientation I decided to make another tower defence game, however I wanted to do something a bit more original / difficult than a bog standard TD. To make the game less simple I decided to allow the player to build the map, using
+                a set of dominoes. The numbers had to match up to place the domino, and the colour of each square determined what the maximum level of a turret on this tile would be. I created the dominoes as a class with methods to allow movement and placement. Really, it might have
+                been easier to create a domino class that had 2 half-domino classes as children. This would have reduced code spaghettification as the check method I used would be simpler if it was run once on both half-dominoes, rather than having to effectively hard code the half-dominoes relative position.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/dominotd3.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Demonstration of domino placing system</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/Dominotd1.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Demonstration of domino placement, enemies and enemy routes</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                In this project, the hardest problem to solve was that of pathfinding - not only did enemies need to find a route, it should be the quickest route. Additionally, a player shouldn't be able to completely block enemies getting from the start to the finish.
+                As such, I needed to employ a pathfinding algorithm. I did some research and determined that A* was probably my best bet, however having tried a couple of times to implement it, I realized that I was not yet skillful enough to produce a working, let alone robust
+                pathfinding algorithm. I researched open source pathfinding libraries for lua, and came across <a href="https://github.com/Yonaba/Jumper">Jumper</a>. This seemed to be a very well built algorithm, however as I had to incorporate it into an ongoing project, I had to do
+                some slight editing to the code. As far as I can remember, I only had to change a small and fairly simple part of the algorithm - the gathering of neighbours. The jumper algorithm allowed diagonal movement, which would have been great to keep,
+                however this meant that enemies would cut the corners of dominoes. I ended up just axing all the diagonal neighbours, as this was a quick and easy fix for a problem I had been dealing with for a while, however I also could have tried to improve this fix by
+                allowing diagonal neighbours only if none of the non-diagonal neighbours were walls.
+            </p>
+            <div class="row">
+                <div class="col-lg-3" style="margin: 0;">
+                    <img src="showcase/donimotd4.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Explanation of shortcut problem</p>
+                </div>
+                <div class="col-lg-9" style="margin: 0;">
+                    <img src="showcase/dominotd5.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Diagram explaining shortcut fix limitations</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                The implementation of turrets was made a lot easier with object orientation. My shop was clumsily built, and I have since learned better ways of doing such utilities, but actually had some advantages. A drag and drop system was easily added by making an
+                inactive instantiation of the turret class off of the map. When deactivated, but not held, it would spin to show that it was in the menu. When held, it would not spin but would also draw a circle showing its range. When dropped a simple check was made that there was a
+                domino beneath it, and that there was not already a turret there. The turret was then given coordinates to match it with the grid, and its attributes such as max level were set based on the colour of the domino. The turret was then set to active so that it could shoot in the next
+                round, and a new deactivated turret was instantiated in the shop.
+            </p>
+
+            <div class="row">
+                <div class="col-lg-12" style="margin: 0;">
+                    <img src="showcase/dominotd6.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Placing turrets</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@8.17.0/dist/lazyload.min.js"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="#contact">Builds</a>
+        <a href="#contact">Showcase</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>City Map</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                June 2017
+            </p>
+            <p style="color: white; font-size:large">
+                The City Map generator was another prototype for the same game idea as the heatmap. As the game revolved around the idea of a team of police cars stopping a criminal from escaping, it was important to be able to generate
+                maps that would be suitable for gameplay. Ideally, the program should be able to generate many cities to promote repeatability. I wrote this program with the help of a friend, who suggested the use of new concepts such as mixins.
+                We determined that a recursive generation method would be best, as long as we managed the recursion properly so we didn't get a stack overflow, or the map took too long to generate.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/chase.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Smaller city map with seed 80</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/chase2.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Larger city map with seed 99</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                The program utilises a recursive 'generate' method in the map class. Roads cannot have a depth of > 1600, to stop stack overflow errors, and also to make sure that the city does not go on forever. An endless mode could
+                be retro-coded by effectively restarting 'dead' roads once the player is closer to them, and the stack is empty as the rest of the map has been saved.
+                The map generation uses a system similar to a stochastic grammar in a Lindenmeyer system. The road has a high chance of staying straight with no junction / bend (70%), and 5% chance to turn, have a t junction, crossroad, or dead end.
+                These probabilities could be changed to generate different styles of maps, for example increasing the chances of roads continuing, and crossroads occuring might generate an american suburb style map, whereas having higher chances of turning and lower
+                chances of continuing roads straight on might generate an old european style city. However, as the roads can only travel N,S,E,W it is hard to generate more organic cities.
+            </p>
+            <div class="row">
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/chaseUsa.png" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">'American style city' - generated using higher chances of crossroads than other types of junctions</p>
+                </div>
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/chaseEu.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">'European style town' - generated using higher chances of turning</p>
+                </div>
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/cityspread.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Spread out town - generated by using very high chance of straight roads, low chances of all others</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                While these probabilities give a helpful level of control over the style of map, the map success rate is about half (when seeded with integers). The other maps have dead ends too early, and often consist of only one or two roads. Once the roads have split enough, the city
+                is a success as the only limiting factor is the bailout at 1600 deep, to stop the city from getting too big. If I had continued the project further, I could have written a short script that generated many thousands of these maps, and assumed that those with roads of depth values
+                over 1000 were a success, and stored these seeds in an array for use in game. This algorithm could ultimately have allowed the maps to be grouped into small, medium and large based on how deep the recursion got before the generation ended.
+            </p>
+
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

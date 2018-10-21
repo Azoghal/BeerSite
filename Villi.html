@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="#contact">Builds</a>
+        <a href="#contact">Showcase</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Villi</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                June 2017
+            </p>
+            <p style="color: white; font-size:large">
+                Villi is a game similar to a tower defense built in Unity with C#, as a submission to Week 31 of the <a href="http://weeklygamejam.com/">Weekly Game Jam<a>. The theme for the week was digestion, so I got started by coming up with some basic ideas.
+                I decided to have the game take place in the bowels of some creature to begin with. Globs of foods would spawn at one end of the gut and would drift towards the other end, and the player's goal was to digest/absorb as much food as possible.
+                I also decided to deepen gameplay by having multiple food types, and multiple placeable "Villi", which are the tiles the player places to absorb particles. My art skills are not great, so I decided to restrict the setting to a
+                metaphorical gut, as this reduced the need for interesting artwork, and also meant the placement of villi was simpler as the grid was more easily visible.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/villi1.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Gif showing gameplay and UI usage</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/villi2.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Gif showing camera panning and placement of villi</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                There are 3 types of particle - fat, sugar, and protein, and each particle can take one of three shapes. A particle can only be absorbed by a villi of the same colour, where the cheaper "all" villi can absorb any shape for a small amount of money,
+                or a shaped villi can absorb only particles of their shape and colour, for a much greater reward. This mechanic is to allow an easier start, and to allow some progression as the rounds progress. To stop the particles from becoming easily stuck, I made the villi apply a
+                force to any particle that was touching its hairs. I then realised that the player could use these forces to better their designs, so I allowed them to change the direction of the force (clockwise / anticlockwise).
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/villi3.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Changing the direction a tile pushes</p>
+                </div>
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/villi.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Help screen and overview of UI</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                Week 31 was not a competition week, so there were no judges, however the creators of submissions are encouraged to play and review other submissions. The feedback I got was mainly to clean up the graphics and let the shapes on villi / particles be more pronounced
+                so that they could be more easily recognised. Aditionally, extra balancing would be needed to make the gameplay fun, especially towards the last rounds.
+            </p>
+
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

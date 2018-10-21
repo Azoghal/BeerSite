@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="#contact">Builds</a>
+        <a href="#contact">Showcase</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Heatmap</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                May 2017
+            </p>
+            <p style="color: white; font-size:large">
+                The heatmap program was a prototype for a game idea where the player plays as a police department and has to try and stop criminals escaping a city. The heatmap prototype would have gone on to be the basis of the
+                police behaviour (is the criminal close enough for the patrol car to see?), and also criminal pathfinding (adding together many heatmaps to give an overall heatmap would allow enemy navigation to weight different routes according to where the police were).
+                The algorithm could probably have been more efficient if done recursively, however this might have caused problems if at a later point, I had increased the starting heat, as this could more easily have caused a stack overflow.
+                The basics of the algorithm is to start with an empty 'heatmap' grid, and a 'map' grid. When a gridblock is clicked, it is first checked that this is not a wall. If it is not a wall, its heat is set to the input heat (4 or 6 in the gifs below),
+                and the orthoganal neighbours are set to one less than that, if they are not a wall.
+                Now, the entire heatmap is analysed, and if it comes across a tile with a heat equal to the target heat (which decreases from the input heat once an entire pass has been made), all surrounding, non-wall tiles are set to a heat of 1 less than the target heat, unless they already have a
+                heat greater than or equal to the target heat. Once an entire pass has been complete, the process starts again with a lower heat until the target heat is 1. By this point the heatmap is complete, and all remaining  tiles will have a heat of 0.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/heatmap6l.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Heatmap with initial heat of 6</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/heatmap5l.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Heatmap with initial heat of 5</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                I went for quite a simple art style, which is very clear. Large red blocks as walls, dark blue blocks for road, contrasting with a bright white - blue gray for heated tiles. The colouring was fairly trivial - draw each tile as a rectangle
+                with an RGB related to heat, with some extra blue added.
+            </p>
+            <div class="row">
+                <div class="col-lg-5" style="margin: 0;">
+                    <img src="showcase/heatmap8l.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Heatmap with initial heat 8</p>
+                </div>
+                <div class="col-lg-7" style="margin: 0;">
+                    <img src="showcase/Chase%20Heatmap%20cd.png"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Extract of non-recursive code for setting orthogonal neighbours' heat</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                Looking back on the code above, there are many improvements that could be made. I think that if I coded this same project now, I would use a recursive method, where a function sets a heat level for a tile, and calls itself on any orthogonal neighbours,
+                only setting and recalling itself on neighbours if the new heat is higher. This would have likely proven more efficient, as not every cell has to be scanned for each heat level. I might redo this algorithm, using a recursive approach, in Java/Processing.
+            </p>
+
+
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>

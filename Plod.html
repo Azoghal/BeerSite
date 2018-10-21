@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Beer Sphere - Code</title>
+
+    <style>
+
+        html,body {
+            padding:0;
+            margin:0;
+        }
+        h1 {
+            font-size: 400% ;
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 200%;
+            color: #ffffff;
+        }
+        h3 {
+            font-size: 100%;
+            color: #adadad;
+
+        }
+
+
+
+        .header{
+            border-bottom: 5px solid darkturquoise;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-left: 0px;
+            background-color: #6f6f6f;
+        }
+
+        #index{
+            overflow: hidden;
+        }
+
+        #index a
+        {
+            display: list-item;
+            list-style: none;
+            font-weight: bold;
+            font-size: larger;
+            color: #ffffff;
+
+        }
+
+        #index a:hover {
+            color: darkturquoise;
+            text-decoration: none;
+
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        #navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body background="fractalQuadrant5darkened.png">
+
+<div class="container-fluid header">
+    <div id="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Code.html">Code</a>
+        <a href="Builds.html">Builds</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="text-align: center"><h1>Powerful Plod</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2" id="index" style="float: right;" >
+            <a href="LuaGames.html">Early Lua Games</a>
+            <a href="Domino.html">Domino TD</a>
+            <a href="Syzygy.html">Syzygy</a>
+            <a href="Heatmap.html">Heatmap</a>
+            <a href="City%20Map.html">City Map</a>
+            <a href="Villi.html">Villi</a>
+            <a href="Plod.html">Powerful Plod</a>
+            <a href="Fractals.html">Fractals</a>
+            <a href="Fractals2.html">Fractals 2</a>
+        </div>
+        <div class="col-lg-8">
+            <p style="color: white; font-weight: bold; font-size: large">
+                Feb 2018
+            </p>
+            <p style="color: white; font-size:large">
+                Powerful Plod was a multiplayer game I made over the course of about two months, that I developed to get some experience in and understanding of networking. It is a simple arena game, with a last man standing game mode. As such the requirements for the
+                networking was to facilitate hosting and joining servers, as well as manage games (eg respawning and round restarting). This was my first attempt at networking, and as such the netcode ended up being quite messy, but I did learn many of the important
+                basics of networking. The game was built in Unity, which provides a networking package called UNet. This has both a high and low level API. As I was inexperienced and the game did not need extremely complicated networking, I used the high level API.
+            </p>
+            <div class="row">
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/Plodhost.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Hosting a game</p>
+                </div>
+
+                <div class="col-lg-6" style="margin: 0;">
+                    <img src="showcase/plodjoin.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Friend joining game</p>
+                </div>
+            </div>
+            <p style="color: white; font-size: large">
+                Each player tries to be the last one standing on a platform; they can knock other players off by stomping/ "plodding", hence the name. The first issue I had to overcome was applying the forces from the attacks. A client has priority of their
+                character, and uploads position, rotation etc to the server, and other clients then read and update their scene. Because the client has priority of their character, the forces could not be applied from the sending end, so they had to be sent to
+                the client end and have them apply it. This is probably not the most elegant solution, but it solved most of the problems I was encountering at this point. At this point, the game was a free for all, so I wanted to make a last man standing game mode.
+                These two game modes were very similar in structure, but had a lot of differences, so I implemented an interface to allow them to be easily switched. This was my first use of interfaces, and it turned out to be both very useful and simple to implement.
+            </p>
+            <div class="row">
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/plodPlay.gif" width="100%">
+                    <p style="color: white; text-align: center; font-size: small ">Playing the game</p>
+                </div>
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/ploddie.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Player dying, ending the round, and both parties being respawned for new round</p>
+                </div>
+                <div class="col-lg-4" style="margin: 0;">
+                    <img src="showcase/plodJUmp.gif"width="100%" style="float: right">
+                    <p  style="color: white; text-align: center; font-size: small">Being sent high into the sky</p>
+                </div>
+            </div>
+
+            <p style="color: white; font-size: large">
+                At various points throughout developement I managed to get my friends to play the game, having 8 people online at once on the free for all test, and 12 people online at once on the last man standing test. Both nights we had a lot
+                of fun, for about an hour and a half, which I counted as a success. The feedback I got was basically to develop the game further so there were different abilities (not too hard), to stop attacks from working through cover (not too hard),
+                and to add name plates so that we could see who each player was, which I did implement (although making them point the camera of the client was a bit of a hassle).
+                Of course my mates also bashed the graphics (which were admittedly very poor).
+            </p>
+
+            <p style="color: white; font-size: large">
+                After implementing the name tags I was a bit burned out on the project, and every new thing I implemented was harder than it should have been because of the messy net code, so a complete rewrite was really in order.
+                As such, I stopped developing the game, although I might come back and develop a similar game later due to the obvious potential for it to be fun from the test sessions.
+            </p>
+
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>
